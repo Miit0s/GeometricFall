@@ -7,12 +7,13 @@ public class Score : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScore;
     public TextMeshProUGUI highScore;
+    public TextMeshProUGUI highScoreText;
 
     private float bestScore = 0;
 
     private void Start()
     {
-        highScore.text = PlayerPrefs.GetFloat("HighScore", 0).ToString("0"); //Affiche le meilleur score des que le jeux se lance
+        highScore.text = PlayerPrefs.GetFloat("HighScore", 0).ToString("0"); //Affiche le meilleur score dès que le jeux se lance
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class Score : MonoBehaviour
             {
                 PlayerPrefs.SetFloat("HighScore", Mathf.Abs(player.position.y));
                 highScore.text = Mathf.Abs(player.position.y).ToString("0");
+                highScoreText.text = "New High Score"; //Affiche que c'est un nouveau score
             }
         }
     }

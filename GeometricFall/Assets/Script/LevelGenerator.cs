@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    private GameObject platformPrefab;
     public GameObject manager;
     public GameObject player;
 
@@ -29,13 +28,17 @@ public class LevelGenerator : MonoBehaviour
             //Choisi une plateforme aléatoire
             randomPlateforme = Random.Range(0, 100);
 
-            if (randomPlateforme < 90)
+            if (randomPlateforme < 70)
             {
-                randomPlateforme = 0;
+                randomPlateforme = 0; //Plateforme normal
+            }
+            else if (randomPlateforme > 70 && randomPlateforme < 90)
+            {
+                randomPlateforme = 2; //Plateforme avec piece
             }
             else
             {
-                randomPlateforme = 1;
+                randomPlateforme = 1; //Plateforme qui tue le joueur
             }
 
             spawnPosition.y -= Random.Range(0.5f, 2f);
@@ -56,11 +59,27 @@ public class LevelGenerator : MonoBehaviour
             Vector3 spawnPosition1 = new Vector3();
             spawnPosition1.y = player.transform.position.y - 20f;
 
+            //Choisi une plateforme aléatoire
+            randomPlateforme = Random.Range(0, 100);
+
+            if (randomPlateforme < 70)
+            {
+                randomPlateforme = 0; //Plateforme normal
+            }
+            else if (randomPlateforme > 70 && randomPlateforme < 90)
+            {
+                randomPlateforme = 2; //Plateforme avec piece
+            }
+            else
+            {
+                randomPlateforme = 1; //Plateforme qui tue le joueur
+            }
+
             for (int i = 0; i < 100; i++)
             {
                 spawnPosition1.y -= Random.Range(0.5f, 2f);
                 spawnPosition1.x = Random.Range(-2.5f, 2.5f);
-                Instantiate(platformPrefab, spawnPosition1, Quaternion.identity, manager.transform);
+                Instantiate(plateforme[randomPlateforme], spawnPosition1, Quaternion.identity, manager.transform);
             }
 
             //On réaugmente la distance pour refaire ça quand le joueur aura atteint la fin de ceux que nous avons fait réaparaitre
