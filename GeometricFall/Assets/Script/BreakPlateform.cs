@@ -37,8 +37,17 @@ public class BreakPlateform : MonoBehaviour
                 plateformCollider.enabled = false;
                 prePlatform.enabled = false;
                 particle.Play();
+
+                //On amorce la destruction
+                StartCoroutine(Coroutine());
             }
 
         }
+    }
+
+    private IEnumerator Coroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }

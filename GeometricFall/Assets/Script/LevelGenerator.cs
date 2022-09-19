@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject manager;
+    private GameObject manager;
     public GameObject player;
 
     public List<GameObject> plateforme = new List<GameObject>();
@@ -14,9 +14,16 @@ public class LevelGenerator : MonoBehaviour
 
     public int platformCount = 300;
 
+    //Ces variable vont permettre d'augmenter la difficulté
+    private int palierDeDifficulté = -500;
+    private int apparitionPlateformeRouge = 90;
+    private int apparitionPlateformePiece = 70;
+
     // Start is called before the first frame update
     void Start()
     {
+        manager = gameObject;
+
         //Défini le son sauvegarder avant
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
 
@@ -50,6 +57,16 @@ public class LevelGenerator : MonoBehaviour
     //Génération infini
     void Update()
     {
+        //Plus le joueur va descendre, plus il y aura de plateforme rouge
+        if (player.transform.position.y < palierDeDifficulté)
+        {
+            Debug.Log("Palier de difficulté augmenter");
+
+            palierDeDifficulté -= 500;
+            apparitionPlateformePiece -= 5;
+            apparitionPlateformeRouge -= 5;
+        }
+
         //Si le joueur arrive à une certaine distance on fait réaparaitre des plateforme
         if (player.transform.position.y < distance)
         {
@@ -62,11 +79,11 @@ public class LevelGenerator : MonoBehaviour
             //Choisi une plateforme aléatoire
             randomPlateforme = Random.Range(0, 100);
 
-            if (randomPlateforme < 70)
+            if (randomPlateforme < apparitionPlateformePiece)
             {
                 randomPlateforme = 0; //Plateforme normal
             }
-            else if (randomPlateforme > 70 && randomPlateforme < 90)
+            else if (randomPlateforme > apparitionPlateformePiece && randomPlateforme < apparitionPlateformeRouge)
             {
                 randomPlateforme = 2; //Plateforme avec piece
             }
