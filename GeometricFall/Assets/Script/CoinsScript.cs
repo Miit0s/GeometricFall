@@ -11,7 +11,7 @@ public class CoinsScript : MonoBehaviour
 
     private void Start()
     {
-        coins = PlayerPrefs.GetInt("CoinsNumber", 0); //Set le nombre de coins
+        coins = PlayerPrefs.GetInt("CoinsNumber", 0); //Prend le nombre de coins
         coinsNumberText.text = PlayerPrefs.GetInt("CoinsNumber", 0).ToString("0"); //Affiche l'argent que le joueur a dès que le jeux se lance
     }
 
