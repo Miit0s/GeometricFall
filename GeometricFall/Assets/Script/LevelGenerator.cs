@@ -18,6 +18,7 @@ public class LevelGenerator : MonoBehaviour
     private int palierDeDifficulté = -500;
     private int apparitionPlateformeRouge = 90;
     private int apparitionPlateformePiece = 70;
+    private int apparitionPlateformeBouclier = 68;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,16 @@ public class LevelGenerator : MonoBehaviour
             //Choisi une plateforme aléatoire
             randomPlateforme = Random.Range(0, 100);
 
-            if (randomPlateforme < 70)
+            if (randomPlateforme < 68)
             {
                 randomPlateforme = 0; //Plateforme normal
             }
-            else if (randomPlateforme > 70 && randomPlateforme < 90)
+            else if (randomPlateforme >= 68 && randomPlateforme < 70)
+            {
+                Debug.Log("Plateforme avec bouclier");
+                randomPlateforme = 3; //Plateforme avec bouclier
+            }
+            else if (randomPlateforme >= 70 && randomPlateforme < 90)
             {
                 randomPlateforme = 2; //Plateforme avec piece
             }
@@ -63,6 +69,7 @@ public class LevelGenerator : MonoBehaviour
             Debug.Log("Palier de difficulté augmenter");
 
             palierDeDifficulté -= 500;
+            apparitionPlateformeBouclier -= 5;
             apparitionPlateformePiece -= 5;
             apparitionPlateformeRouge -= 5;
         }
@@ -83,7 +90,11 @@ public class LevelGenerator : MonoBehaviour
             {
                 randomPlateforme = 0; //Plateforme normal
             }
-            else if (randomPlateforme > apparitionPlateformePiece && randomPlateforme < apparitionPlateformeRouge)
+            else if (randomPlateforme >= apparitionPlateformeBouclier && randomPlateforme < apparitionPlateformePiece)
+            {
+                randomPlateforme = 3; //Plateforme avec bouclier
+            }
+            else if (randomPlateforme >= apparitionPlateformePiece && randomPlateforme < apparitionPlateformeRouge)
             {
                 randomPlateforme = 2; //Plateforme avec piece
             }

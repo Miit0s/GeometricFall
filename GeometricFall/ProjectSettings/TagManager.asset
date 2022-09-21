@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ennemi
+  - Shield
   layers:
   - Default
   - TransparentFX
