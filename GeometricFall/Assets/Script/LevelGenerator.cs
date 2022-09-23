@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
     private int apparitionPlateformeRouge = 90;
     private int apparitionPlateformePiece = 70;
     private int apparitionPlateformeBouclier = 68;
+    private int apparitionPlateformeNormal = 68;
 
     // Start is called before the first frame update
     void Start()
@@ -69,9 +70,21 @@ public class LevelGenerator : MonoBehaviour
             Debug.Log("Palier de difficulté augmenter");
 
             palierDeDifficulté -= 500;
-            apparitionPlateformeBouclier -= 5;
-            apparitionPlateformePiece -= 5;
-            apparitionPlateformeRouge -= 5;
+
+            if (palierDeDifficulté == 10000)
+            {
+                apparitionPlateformeBouclier = 0;
+                apparitionPlateformeNormal -= 1;
+                apparitionPlateformePiece -= 1;
+                apparitionPlateformeRouge -= 1;
+            }
+            else
+            {
+                apparitionPlateformeNormal -= 1;
+                apparitionPlateformeBouclier -= 1;
+                apparitionPlateformePiece -= 1;
+                apparitionPlateformeRouge -= 1;
+            }
         }
 
         //Si le joueur arrive à une certaine distance on fait réaparaitre des plateforme
@@ -83,28 +96,28 @@ public class LevelGenerator : MonoBehaviour
             Vector3 spawnPosition1 = new Vector3();
             spawnPosition1.y = player.transform.position.y - 20f;
 
-            //Choisi une plateforme aléatoire
-            randomPlateforme = Random.Range(0, 100);
-
-            if (randomPlateforme < apparitionPlateformePiece)
-            {
-                randomPlateforme = 0; //Plateforme normal
-            }
-            else if (randomPlateforme >= apparitionPlateformeBouclier && randomPlateforme < apparitionPlateformePiece)
-            {
-                randomPlateforme = 3; //Plateforme avec bouclier
-            }
-            else if (randomPlateforme >= apparitionPlateformePiece && randomPlateforme < apparitionPlateformeRouge)
-            {
-                randomPlateforme = 2; //Plateforme avec piece
-            }
-            else
-            {
-                randomPlateforme = 1; //Plateforme qui tue le joueur
-            }
-
             for (int i = 0; i < 100; i++)
             {
+                //Choisi une plateforme aléatoire
+                randomPlateforme = Random.Range(0, 100);
+
+                if (randomPlateforme > 0 && randomPlateforme < apparitionPlateformeNormal)
+                {
+                    randomPlateforme = 0; //Plateforme normal
+                }
+                else if (randomPlateforme >= apparitionPlateformeBouclier && randomPlateforme < apparitionPlateformePiece && apparitionPlateformeBouclier != 0)
+                {
+                    randomPlateforme = 3; //Plateforme avec bouclier
+                }
+                else if (randomPlateforme >= apparitionPlateformePiece && randomPlateforme < apparitionPlateformeRouge)
+                {
+                    randomPlateforme = 2; //Plateforme avec piece
+                }
+                else
+                {
+                    randomPlateforme = 1; //Plateforme qui tue le joueur
+                }
+
                 spawnPosition1.y -= Random.Range(0.5f, 2f);
                 spawnPosition1.x = Random.Range(-2.5f, 2.5f);
                 Instantiate(plateforme[randomPlateforme], spawnPosition1, Quaternion.identity, manager.transform);
