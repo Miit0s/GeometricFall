@@ -7,40 +7,32 @@ public class OptionsMenu : MonoBehaviour
 {
     public Slider volumeBar;
     public TextMeshProUGUI volumeText;
-    private int volume = 100;
+    private float volume;
 
-    private void Start()
+    private void Awake()
     {
-        if (!PlayerPrefs.HasKey("musicVolume"))
-        {
-            PlayerPrefs.SetInt("musicVolume", 100);
-            Load();
-        }
-
-        else
-        {
-            Load();
-        }
+        Load();
     }
 
     //Fonction qui change le volume
     public void changeVolume()
     {
-        volume = Convert.ToInt32(volumeBar.value);
-        volumeText.text = Convert.ToString(volume);
-        AudioListener.volume = volume;
+        //Sauvegarde le volume, puis l'affiche
+        volume = volumeBar.value;
+        //*100 car la valeur de son est comprise entre 0 et 1
+        volumeText.text = (volumeBar.value * 100).ToString("0");
         Save();
     }
 
     private void Load()
     {
         //Remet à jour le volume sauvegarder
-        volumeBar.value = PlayerPrefs.GetInt("musicVolume");
+        volumeBar.value = (float)PlayerPrefs.GetFloat("musicVolume", 1);
     }
 
     private void Save()
     {
         //Sauvegarde le volume de la musique
-        PlayerPrefs.SetInt("musicVolume", volume);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 }
