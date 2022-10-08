@@ -20,11 +20,14 @@ public class ShopSystem : MonoBehaviour
     private int coins;
     public TextMeshProUGUI coinsAmount;
 
-    //On ne peut pas auvegarder des booléen avec playerprefs, donc si skin1 = 0, alors le joueur n'a pas dévérouiller le skin et si skin1 = 1, il l'a dévérouillier
+    //On ne peut pas sauvegarder des booléen avec playerprefs, donc si skin1 = 0, alors le joueur n'a pas dévérouiller le skin et si skin1 = 1, il l'a dévérouillier
     private int skin1;
     private int skin2;
     private int skin3;
     private int skin4;
+
+    //SFX
+    public AudioClip newItem;
 
     private void Start()
     {
@@ -84,6 +87,8 @@ public class ShopSystem : MonoBehaviour
         }
         else if (skinPrice[index] < coins)
         {
+            SoundManager.Instance.PlaySound(newItem); //On lance le son
+
             coins -= skinPrice[index];
             PlayerPrefs.SetInt("CoinsNumber", coins);
             PlayerPrefs.SetInt("Skin" + index.ToString("0"), 1);

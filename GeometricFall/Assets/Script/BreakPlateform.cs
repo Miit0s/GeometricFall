@@ -12,6 +12,9 @@ public class BreakPlateform : MonoBehaviour
     BoxCollider2D plateformCollider;
     BoxCollider2D prePlatform;
 
+    //SFX
+    public AudioClip breakPlateform;
+
     private void Start()
     {
         //Prend toute les valeur en avance pour éviter de le faire à chaque fois
@@ -32,6 +35,8 @@ public class BreakPlateform : MonoBehaviour
             //Regarde si la vitesse est sufisante pour briser la plateforme
             if (rb.velocity.y <= -15)
             {
+                SoundManager.Instance.PlaySound(breakPlateform); //On lance le son
+
                 //Effect de particule
                 platformSprite.enabled = false;
                 plateformCollider.enabled = false;
@@ -47,7 +52,7 @@ public class BreakPlateform : MonoBehaviour
 
     private IEnumerator Coroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }

@@ -138,4 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7de3e2365ccc554f8c74a71cd628db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverScreen: {fileID: 7794322999478735824, guid: adde0f146262a8640aa5f52ad051d20c, type: 3}
+  gameOverScreen: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 2b0b46dd5802a904bbc58abb22b3e79f, type: 3}
+  destroyShield: {fileID: 8300000, guid: 907d60c666a3e4d40bb4a62ba2e52337, type: 3}

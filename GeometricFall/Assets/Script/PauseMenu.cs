@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public AudioSource musicSource;
+
     public void ReturnToMenu()
     {
         //Remet le temps en route
@@ -16,6 +18,10 @@ public class PauseMenu : MonoBehaviour
     //Met en pause le jeu (publique car on veut que ce soit accesible directement depuis unity pour qu'il execute la fontion quand on appuie sur certain boutton)
     public void PauseGame()
     {
+        //Met en pause la musique
+        musicSource.mute = true;
+
+        //Arrête le temps
         Time.timeScale = 0f;
     }
 
@@ -24,6 +30,9 @@ public class PauseMenu : MonoBehaviour
     {
         //Cette fonction permet de ralentir le temps
         Time.timeScale = 1f;
+
+        //Remet la musique
+        musicSource.mute = false;
     }
 
     public void RestartGame()

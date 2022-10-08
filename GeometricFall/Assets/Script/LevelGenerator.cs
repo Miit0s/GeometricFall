@@ -26,9 +26,6 @@ public class LevelGenerator : MonoBehaviour
     {
         manager = gameObject;
 
-        //Défini le son sauvegarder avant
-        AudioListener.volume = PlayerPrefs.GetFloat("volume");
-
         //Met en place les plateforme
         Vector3 spawnPosition = new Vector3();
 

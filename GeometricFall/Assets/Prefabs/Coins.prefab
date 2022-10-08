@@ -145,3 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a059ad7f19c9b1c43b6b716bba57b4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinsNumberText: {fileID: 0}
+  coinsAnimation: {fileID: 0}
+  newCoins: {fileID: 8300000, guid: 5ab215a427a950f4aa3d9ecf7066ccc9, type: 3}

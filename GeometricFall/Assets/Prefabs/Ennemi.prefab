@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 2b0b46dd5802a904bbc58abb22b3e79f, type: 3}
+  destroyShield: {fileID: 8300000, guid: 907d60c666a3e4d40bb4a62ba2e52337, type: 3}
 --- !u!60 &2144172876984698153
 PolygonCollider2D:
   m_ObjectHideFlags: 0

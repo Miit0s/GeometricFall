@@ -8,6 +8,15 @@ public class GameOverMenu : MonoBehaviour
     public Animator textAnimator;
     public Animator highScoreAnimator;
 
+    //Music
+    public AudioSource musicSource;
+
+    private void Start()
+    {
+        //Mute la musique
+        musicSource.mute = true;
+    }
+
     public void ReturnToMenu()
     {
         //Remet le temps en route

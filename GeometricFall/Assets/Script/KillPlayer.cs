@@ -15,6 +15,10 @@ public class KillPlayer : MonoBehaviour
     private GameObject shield;
     private Animator shieldAnimation;
 
+    //SFX
+    public AudioClip deathSound;
+    public AudioClip destroyShield;
+
     void Start()
     {
         //Optimisation
@@ -36,6 +40,8 @@ public class KillPlayer : MonoBehaviour
             //Va freeze le joueur, puis désactiver son sprite renderer et son collider et enfin activer les particule
             playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
+            SoundManager.Instance.PlaySound(deathSound); //On lance le son
+
             playerSprite.enabled = false;
             playerCollider.enabled = false;
             playerParticle.Play(); //Démare les particule
@@ -45,15 +51,18 @@ public class KillPlayer : MonoBehaviour
         }
         else
         {
+            //Sinon ont démarre la désactivation du shield
             StartCoroutine(Invinsibilte());
         }
     }
 
     private IEnumerator Invinsibilte()
     {
+        SoundManager.Instance.PlaySound(destroyShield);
+
         shieldAnimation.SetBool("ActiveShield", false);
         shieldAnimation.SetTrigger("Destruction");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         shield.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
