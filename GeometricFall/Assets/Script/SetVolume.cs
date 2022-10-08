@@ -6,6 +6,6 @@ public class SetVolume : MonoBehaviour
 {
     private void Awake()
     {
-        gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("musicVolume") - 0.2f;
+        gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("musicVolume", 1) - 0.2f;
     }
 }

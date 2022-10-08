@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume", 1);
 
         if (Instance == null)
         {
