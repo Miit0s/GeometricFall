@@ -18,7 +18,7 @@ public class SwitchSideLeft : MonoBehaviour
 
             player = collision.GetComponent<Transform>();
             spawnPosition = player.position;
-            spawnPosition.x = 2.15f;
+            spawnPosition.x = 2.05f;
             player.position = spawnPosition;
 
            
